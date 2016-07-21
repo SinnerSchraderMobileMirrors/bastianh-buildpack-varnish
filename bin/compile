@@ -1,18 +1,36 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
 
-indent() {
-  sed -u 's/^/       /'
-}
+# Configure environment
+set -e            # fail fast
+set -o pipefail   # don't ignore exit codes when piping output
 
-echo "-----> Found a hello.txt"
+# Directories
+BUILD_DIR=$1
+BUILDPACK_DIR="$(dirname $(dirname $0))"
 
-# if hello.txt has contents, display them (indented to align)
-# otherwise error
+mkdir -p $BUILD_DIR/bin
 
-if [ ! -s $1/hello.txt ]; then
-  echo "hello.txt was empty"
-  exit 1
-else
-  echo "hello.txt is not empty, here are the contents" | indent
-  cat $1/hello.txt
-fi | indent
+cp "$BUILDPACK_DIR/bin/varnishd" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishd
+
+cp "$BUILDPACK_DIR/bin/varnishadm" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishadm
+
+cp "$BUILDPACK_DIR/bin/varnishhist" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishhist
+
+cp "$BUILDPACK_DIR/bin/varnishlog" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishlog
+
+cp "$BUILDPACK_DIR/bin/varnishncsa" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishncsa
+
+cp "$BUILDPACK_DIR/bin/varnishstat" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishstat
+
+cp "$BUILDPACK_DIR/bin/varnishtest" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishtest
+
+cp "$BUILDPACK_DIR/bin/varnishtop" $BUILD_DIR/bin
+chmod +x $BUILDPACK_DIR/bin/varnishtop
