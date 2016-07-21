@@ -11,26 +11,4 @@ BUILDPACK_DIR="$(dirname $(dirname $0))"
 
 mkdir -p $BUILD_DIR/bin
 
-cp "$BUILDPACK_DIR/bin/varnishd" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishd
-
-cp "$BUILDPACK_DIR/bin/varnishadm" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishadm
-
-cp "$BUILDPACK_DIR/bin/varnishhist" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishhist
-
-cp "$BUILDPACK_DIR/bin/varnishlog" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishlog
-
-cp "$BUILDPACK_DIR/bin/varnishncsa" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishncsa
-
-cp "$BUILDPACK_DIR/bin/varnishstat" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishstat
-
-cp "$BUILDPACK_DIR/bin/varnishtest" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishtest
-
-cp "$BUILDPACK_DIR/bin/varnishtop" $BUILD_DIR/bin
-chmod +x $BUILDPACK_DIR/bin/varnishtop
+tar xfvz "$BUILDPACK_DIR/bin/varnish.tar.gz" -C $BUILD_DIR/bin
